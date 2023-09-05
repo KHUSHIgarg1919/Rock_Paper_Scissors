@@ -109,12 +109,13 @@ int main()
 
     char name[20];
     printf("Player Name: ");
-    gets(name);
+    fgets(name,sizeof(name),stdin);
 	
     srand(time(0));                                                                       //take current time as seed value and generate different sequence of random nos. each time 
 
     printf("\t\t\t\t==========*Welcome to Rock, Paper & Scissors Game*==========");
-    while(1) {                                                                            //Infinite loop, we will break when needed
+    while(1)                                                                              //Infinite loop, we will break when needed
+    {                                                                            
         printf("\nPlease select the option: ");
         printf("\n1.Scissor");
         printf("\n2.Paper");
@@ -127,6 +128,7 @@ int main()
 	{
             if(userChoice == 4) 
 	    {
+		checkOptions(userChoice, compChoice);
                 break;                                                                  //Exit the loop if the user chooses to quit
             } 
 	    else if(userChoice >= 1 && userChoice <= 3) 
