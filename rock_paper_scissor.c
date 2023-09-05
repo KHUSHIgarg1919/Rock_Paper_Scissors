@@ -101,7 +101,6 @@ void checkOptions(int user,int comp)
 	{
 		printf("\n Invalid Option");
 	}
-
 }
 int main()
 {
@@ -112,21 +111,42 @@ int main()
     printf("Player Name: ");
     gets(name);
 	
-    srand(time(0));                      //take current time as seed value and generate different sequence of random nos. each time 
+    srand(time(0));                                                                       //take current time as seed value and generate different sequence of random nos. each time 
 
     printf("\t\t\t\t==========*Welcome to Rock, Paper & Scissors Game*==========");
-    while(userChoice != 4)
-	{
+    while(1) {                                                                            //Infinite loop, we will break when needed
         printf("\nPlease select the option: ");
         printf("\n1.Scissor");
         printf("\n2.Paper");
         printf("\n3.Rock");
         printf("\n4.Quit\n");
-        scanf("%d",&userChoice);
 
-        compChoice = (rand() % 3) + 1;              //as compChoice can be from 1,2,3
-        checkOptions(userChoice,compChoice);
+        int inputStatus = scanf("%d", &userChoice);                                      //scanf attempts to read an integer from the input.If the read operation is successfull,inputStatus will be set to 1.
+
+        if(inputStatus == 1) 
+	{
+            if(userChoice == 4) 
+	    {
+                break;                                                                  //Exit the loop if the user chooses to quit
+            } 
+	    else if(userChoice >= 1 && userChoice <= 3) 
+	    { 
+                compChoice = (rand() % 3) + 1;                                          //as compChoice can be from 1,2,3
+                checkOptions(userChoice, compChoice);
+            }
+	    else 
+	    {
+                printf("\nInvalid Option. Please choose a valid option (1-4).\n");
+            }
+        } 
+	else 
+	{
+            printf("\nInvalid Input. Please enter a number (1-4).\n");
+            
+            while(getchar() != '\n');                                                   //Clear the input buffer to prevent an infinite loop
+        }
     }
+    return 0;
 }
 
 
