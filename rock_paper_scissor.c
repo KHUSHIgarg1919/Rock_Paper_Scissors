@@ -106,9 +106,9 @@ void checkOptions(int user,int comp)
 int main()
 {
     int userChoice;
-	int compChoice;
+    int compChoice;
 
-	char name[20];
+    char name[20];
     printf("Player Name: ");
     gets(name);
 	
